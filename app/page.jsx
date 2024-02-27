@@ -1,4 +1,5 @@
 "use client";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Grid,
   Card,
@@ -7,10 +8,12 @@ import {
   Typography,
   Tooltip,
   Box,
+  IconButton,
 } from "@mui/material";
-import getAnimal from "../app/getAnimal";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
+
 
 async function getAnimals() {
   const response = await fetch(
@@ -91,10 +94,51 @@ export default function Home() {
             </Tooltip>
           </Grid>
         ))}
+
+        <Grid item xs={12} sm={4} md={3}>
+          <Tooltip title="เพิ่มข้อมูลสัตว์ใหม่" placement="top">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0px 0px 8px rgba(0,0,0,0.5)",
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 280, // กำหนดความสูงเพื่อให้เท่ากับการ์ดอื่นๆ
+                    minHeight: "200px",
+                  }}
+                >
+                  <IconButton
+                    color="primary"
+                    aria-label="add animal"
+                    component="span"
+                    // onClick={} // เพิ่มเหตุการณ์ onClick
+                    size="large"
+                  >
+                    <AddIcon sx={{ fontSize: "3rem" }} />
+                  </IconButton>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </Tooltip>
+        </Grid>
+
+        
+
         {loading && (
-          <Typography sx={{ mt: 2, textAlign: "center" }}>
-            กำลังโหลด...
-          </Typography>
+          <Grid item xs={12}>
+            <Typography sx={{ mt: 2, textAlign: "center" }}>
+              กำลังโหลด...
+            </Typography>
+          </Grid>
         )}
       </Grid>
     </>
