@@ -12,9 +12,8 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { AnimatePresence } from 'framer-motion';
-
-
+import { AnimatePresence } from "framer-motion";
+import AddAnimal from './AddAnimal';
 async function getAnimals() {
   const response = await fetch(
     "https://65dc41c1e7edadead7eb6f69.mockapi.io/api/v1/DogCat"
@@ -44,6 +43,16 @@ export default function Home() {
   useEffect(() => {
     initAnimal();
   }, []);
+
+  const [showForm, setShowForm] = useState(false); // สร้าง state สำหรับควบคุมการแสดงฟอร์ม
+
+  const handleOpenForm = () => {
+    setShowForm(true); // แสดงฟอร์ม
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false); // ซ่อนฟอร์ม
+  };
 
   return (
     <>
@@ -120,18 +129,17 @@ export default function Home() {
                     color="primary"
                     aria-label="add animal"
                     component="span"
-                    // onClick={} // เพิ่มเหตุการณ์ onClick
+                    onClick={handleOpenForm} // แสดงฟอร์มเมื่อคลิก
                     size="large"
                   >
                     <AddIcon sx={{ fontSize: "3rem" }} />
                   </IconButton>
+                  {showForm && <AddAnimal onClose={handleCloseForm} />} {/* แสดงฟอร์มเมื่อ showForm เป็น true */}
                 </CardContent>
               </Card>
             </motion.div>
           </Tooltip>
         </Grid>
-
-        
 
         {loading && (
           <Grid item xs={12}>
