@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { ActionAddAnimal } from "./ActionAddAnimal";
 function AddAnimal({ onClose }) {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
@@ -7,7 +7,17 @@ function AddAnimal({ onClose }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ name, color, description });
+
+    // สร้างอินสแตนซ์ของ FormData
+    const formData = new FormData();
+    // เพิ่มข้อมูลลงใน formData
+    formData.append('name', name);
+    formData.append('color', color);
+    formData.append('description', description);
+
+    // เรียกใช้ ActionAddAnimal ด้วย formData
+    ActionAddAnimal(formData);
+
     onClose(); // ปิดฟอร์มหลังจากส่งข้อมูล
   };
 
