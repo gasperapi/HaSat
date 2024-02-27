@@ -1,0 +1,23 @@
+async function getAnimals() {
+    const response = await fetch(
+      "https://65dc41c1e7edadead7eb6f69.mockapi.io/api/v1/DogCat"
+    );
+    if (!response.ok) {
+      throw new Error("cannot fetch Animals");
+    }
+    return response.json();
+  }
+  const [animalState, setAnimalState] = useState([]);
+
+  const initAnimal = async () => {
+    try {
+      const result = await getAnimals()
+      console.log(result)
+      setAnimalState(result)
+    } catch (error) {
+      console.log('error',error);
+    }
+  }
+  useEffect(() => {
+    initAnimal()
+  },[])

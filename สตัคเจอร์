@@ -1,0 +1,34 @@
+haSat/
+├── app/
+│   ├── page.jsx  // ไฟล์เริ่มต้นโปรเจค
+│   ├── layout.jsx // Layout ระดับ root
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Header.js
+│   │   │   └── Footer.js
+│   │   ├── layout/
+│   │   │   └── Layout.js
+│   │   ├── ui/
+│   │   │   ├── Button.js
+│   │   │   └── Card.js
+│   │   └── form/
+│   │       ├── SearchForm.js
+│   │       └── ReportForm.js
+│   ├── pages/
+│   │   ├── index.js
+│   │   ├── about.js
+│   │   ├── report.js
+│   │   └── search.js
+│   ├── public/
+│   │   ├── images/
+│   │   └── favicon.ico
+│   ├── styles/
+│   │   ├── globals.css
+│   │   └── Home.module.css
+│   └── utils/
+│       └── api.js
+├── .env.local
+├── .gitignore
+├── next.config.js
+├── package.json
+└── README.md
